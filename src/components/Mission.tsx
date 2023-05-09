@@ -31,8 +31,8 @@ export default function Mission({ id, title, subMissions }: MissionProps) {
             <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
                 M{id} - {title}
             </Typography>
-            {subMissions.map((subMission) => (
-                <SubMission description={subMission.description} options={subMission.options} />
+            {subMissions.map((subMission, index) => (
+                <SubMission key={index} description={subMission.description} options={subMission.options} />
             ))}
         </Box>
     )

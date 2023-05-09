@@ -43,6 +43,7 @@ export default function SubMission({ description, options }: SubMissionProps) {
             >
                 {options.map((option) => (
                     <ToggleButton
+                        key={option}
                         sx={{
                             direction: 'rtl',
                             margin: '0px 10px 0px 10px',
