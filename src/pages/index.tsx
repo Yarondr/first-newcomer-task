@@ -1,6 +1,7 @@
 import Mission from "@/components/Mission";
 import NameSelectDialog from "@/components/NameSelectDialog";
 import { AppBar, Autocomplete, Box, TextField, Toolbar } from "@mui/material";
+import Image from "next/image";
 import * as React from "react";
 
 export default function Home() {
@@ -10,7 +11,7 @@ export default function Home() {
     return (
     <div>
         <Box sx={{ flexGrow: 1}}>
-            <AppBar position="static" sx={{borderRadius: '10px'}}>
+            <AppBar position="static" sx={{borderRadius: '10px', backgroundColor: 'primary.main'}}>
                 <Toolbar>
                     <Autocomplete
                         disablePortal
@@ -20,6 +21,8 @@ export default function Home() {
                         sx={{ width: 300 }}
                         renderInput={(params) => <TextField {...params} label="Select Team" />}
                     />
+                    <Image src="/first-logo.png" alt="first-logo" width="200" height="50" style={{ marginLeft: 'auto'}} />
+                    <Image src="/cargo-connect.png" alt="cargo-connect-logo" width="100" height="50" />
                     <Box sx={{ marginLeft: 'auto'}}>
                         <NameSelectDialog name={name} onSave={(name) => setName(name)} />
                     </Box>

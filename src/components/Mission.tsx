@@ -15,17 +15,16 @@ interface SubMissionProps {
 
 export default function Mission({ id, title, subMissions }: MissionProps) {
     return (
-        //TODO: work on flipping text and buttons
         <Box
             sx={{
                 flexGrow: 1,
                 marginTop: '30px',
                 direction: 'rtl',
-                margin: '30px 20px 0px 20px',
-                backgroundColor: '#6495ED',
+                margin: '40px 60px 0px 60px',
+                backgroundColor: 'primary.main',
                 borderRadius: '10px',
                 padding: '10px 20px 20px 20px',
-                color: 'black',
+                color: '#ffffff',
             }}
         >
 

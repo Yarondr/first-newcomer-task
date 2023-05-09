@@ -23,9 +23,10 @@ export default function SubMission({ description, options }: SubMissionProps) {
                 flexGrow: 1,
                 margin: '10px 20px 10px 20px',
                 direction: 'rtl',
-                backgroundColor: '#CCCCFF',
+                backgroundColor: 'secondary.main',
                 borderRadius: '10px',
                 padding: '10px 20px 10px 20px',
+                color: '#000000'
             }}
         >
 
