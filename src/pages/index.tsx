@@ -1,3 +1,4 @@
+import Mission from "@/components/Mission";
 import NameSelectDialog from "@/components/NameSelectDialog";
 import { AppBar, Autocomplete, Box, TextField, Toolbar } from "@mui/material";
 import * as React from "react";
@@ -25,6 +26,10 @@ export default function Home() {
                 </Toolbar>
             </AppBar>
         </Box>
+
+        <Mission id="00" title="בונוס ביקורת ציוד" subMissions={[
+            { description: "האם כל הציוד שלכם נכנס באזור הביקורת הקטן", options: ["כן", "לא"] },
+        ]} />
     </div>
     )
 }
