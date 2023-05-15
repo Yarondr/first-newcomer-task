@@ -31,7 +31,12 @@ const theme = createTheme({
     secondary: {
       main: '#ba60cd',
     },
-  }
+  },
+  typography: {
+    fontFamily: `"Nunito", "Arial"`,
+    fontWeightRegular: 700,
+    fontWeightMedium: 700,
+  },
 })
 
 export default function RootLayout({ children }: {children: React.ReactNode}) {
