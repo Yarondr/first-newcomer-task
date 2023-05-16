@@ -1,10 +1,7 @@
-import express from 'express';
-import { missionFunctions } from './missions';
-const app = express();
-const PORT = 8080;
+import { NextApiRequest, NextApiResponse } from "next";
+import { missionFunctions } from "./utils/missions";
 
-// backend api server that will be used to serve the application
-app.get('/api/points', (req, res) => {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const data = req.query.missions
 
     try {
@@ -19,8 +16,4 @@ app.get('/api/points', (req, res) => {
     } catch (e) {
         res.status(400).send('Invalid data')
     }
-});
-
-app.listen(PORT, () => {
-    console.log(`Server listening on port ${PORT}`);
-});
+}
