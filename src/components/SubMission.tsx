@@ -7,14 +7,16 @@ import { BorderRight } from '@mui/icons-material';
 interface SubMissionProps {
     description: string;
     options: string[];
+    onChange: (selectedValue: string) => void;
 }
 
-export default function SubMission({ description, options }: SubMissionProps) {
+export default function SubMission({ description, options, onChange }: SubMissionProps) {
     const [value, setValue] = React.useState('');
 
     const handleChange = (event: React.MouseEvent<HTMLElement>, newValue: string) => {
         if (newValue === null) return;
         setValue(newValue);
+        onChange(newValue);
     };
 
     return (
@@ -34,6 +36,7 @@ export default function SubMission({ description, options }: SubMissionProps) {
                 {description}
             </Typography>
             <ToggleButtonGroup
+                
                 sx={{ direction: 'ltr', margin: '5px 0px 5px 0px' }}
                 color="primary"
                 value={value}

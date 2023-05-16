@@ -7,7 +7,7 @@ interface MissionData {
 }
 
 
-export const missions = [
+export const missionsData = [
     {
         id: 0,
         title: "בונוס ביקורת ציוד",

@@ -1,24 +1,26 @@
-import * as React from 'react';
-import { Box, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import SubMission from './SubMission';
+import { forwardRef } from "react";
 
-interface MissionProps {
-    id: string;
+export interface MissionProps {
+    id: number;
     title: string;
-    subMissions: SubMissionProps[];
+    subMissions: SubMissionData[];
+    onChange: (id: number, index: number, values: string) => void;
 }
 
-interface SubMissionProps {
+export interface SubMissionData {
     description: string;
     options: string[];
 }
 
-export default function Mission({ id, title, subMissions }: MissionProps) {
+const Mission = forwardRef<unknown, MissionProps>(({ id, title, subMissions, onChange }: MissionProps, ref) => {
+
     return (
         <Box
+            ref={ref}
             sx={{
                 flexGrow: 1,
-                marginTop: '30px',
                 direction: 'rtl',
                 margin: '40px 60px 0px 60px',
                 backgroundColor: 'primary.main',
@@ -28,12 +30,18 @@ export default function Mission({ id, title, subMissions }: MissionProps) {
             }}
         >
 
-            <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
-                M{id} - {title}
+            <Typography variant="h4" component="div" sx={{ flexGrow: 1}}>
+                M{id < 10 ? `0${id}` : id}: {title}
             </Typography>
             {subMissions.map((subMission, index) => (
-                <SubMission key={index} description={subMission.description} options={subMission.options} />
+                <SubMission key={index} description={subMission.description} options={subMission.options} onChange={
+                    (selectedValue: string) => {
+                        onChange(id, index, selectedValue);
+                    }
+                }/>
             ))}
         </Box>
     )
-}
+});
+
+export default Mission;
