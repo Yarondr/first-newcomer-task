@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
 import styles from '../styles/Mission.module.css';
 import SubMission from './SubMission';
 
@@ -7,7 +7,7 @@ export interface MissionProps {
     id: number;
     title: string;
     subMissions: SubMissionData[];
-    onChange: (id: number, index: number, values: string) => void;
+    onChange: (id: number, values: string[]) => void;
 }
 
 export interface SubMissionData {
@@ -16,6 +16,7 @@ export interface SubMissionData {
 }
 
 const Mission = forwardRef<unknown, MissionProps>(({ id, title, subMissions, onChange }: MissionProps, ref) => {
+    const [values, setValues] = useState<string[]>(Array.from({ length: subMissions.length }, () => ''));
 
     return (
         <Box
@@ -37,7 +38,10 @@ const Mission = forwardRef<unknown, MissionProps>(({ id, title, subMissions, onC
             {subMissions.map((subMission, index) => (
                 <SubMission key={index} description={subMission.description} options={subMission.options} onChange={
                     (selectedValue: string) => {
-                        onChange(id, index, selectedValue);
+                        const newValues = [...values];
+                        newValues[index] = selectedValue;
+                        setValues(newValues);      
+                        onChange(id, newValues);
                     }
                 }/>
             ))}

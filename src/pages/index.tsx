@@ -23,8 +23,6 @@ export default function Home() {
             const missionRef = missions[mission].ref.current;
             if (!missionRef) return;
 
-            console.log(missionValues)
-
             if (missionValues.length === 0 || missionValues.includes('')) {
                 missionRef.scrollIntoView({ behavior: 'smooth', block: 'end'});
                 setTimeout(() => {
@@ -51,8 +49,8 @@ export default function Home() {
         console.log(values);
     }
 
-    function handleChange(missionIndex: number, subMissionIndex: number, value: string) {
-        missions[missionIndex]['values'][subMissionIndex] = value;
+    function handleChange(missionIndex: number, values: string[]) {
+        missions[missionIndex]['values'] = values;
     }
 
     function buildMissionComponents() {
@@ -89,14 +87,13 @@ export default function Home() {
                 <AppBar position="static" sx={{borderRadius: '10px', backgroundColor: 'primary.main', marginTop: '15px'}}>
                     <Toolbar>
                         <Autocomplete
-                            disablePortal
-                            id="team-select"
-                            size="small"
-                            options={Array.from(Array(1000).keys()).map((i) => (`Team #${i + 1}`))}
-                            sx={{ width: 300 }}
-                            renderInput={(params) => <TextField {...params} label="Select Team" />}
                             value={team}
+                            size="small"
+                            id="team-select"
+                            sx={{ width: 300 }}
                             onChange={(event, newValue) => {setTeam(newValue || '');}}
+                            renderInput={(params) => <TextField {...params} label="Select Team" />}
+                            options={Array.from(Array(1000).keys()).map((i) => (`Team #${i + 1}`))}
                         />
                         <Image src="/first-logo.png" alt="first-logo" width="200" height="50" style={{ marginLeft: 'auto'}} />
                         <Image src="/cargo-connect.png" alt="cargo-connect-logo" width="100" height="50" />
@@ -127,11 +124,12 @@ export default function Home() {
                             <Box sx={{textAlign: 'center'}}>
                                 <Button variant="contained" color="primary" onClick={handleSubmit}
                                     sx={{
-                                        margin: '50px 0px 40px 0px',
                                         width: '800px',
                                         height: '100px',
+                                        margin: '50px 0px 40px 0px',
                                     }}
-                                    style={{ fontSize: '40px'}}>
+                                    style={{ fontSize: '40px' }}
+                                >
                                     Submit
                                 </Button>
                             </Box>
