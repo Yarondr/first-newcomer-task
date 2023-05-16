@@ -2,12 +2,13 @@ import * as React from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, Typography } from "@mui/material";
 
 export interface NameSelectDialogProps {
-    name: string;
     onSave: (name: string) => void;
 }
 
-export default function NameSelectDialog({ name, onSave }: NameSelectDialogProps) {
+export default function NameSelectDialog({ onSave }: NameSelectDialogProps) {
     const [open, setOpen] = React.useState(false);
+    const [name, setName] = React.useState('');
+    const [tempName, setTempName] = React.useState('');
 
     const handleClose = () => {
         setOpen(false);
@@ -18,14 +19,18 @@ export default function NameSelectDialog({ name, onSave }: NameSelectDialogProps
     }
 
     const handleSave = (name: string) => {
-        onSave(name);
+        setName(tempName);
+        onSave(tempName);
         handleClose();
     }
 
     return (
         <div>
-            <Button color="inherit" size="small" variant="outlined" onClick={handleOpen}>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Button
+                color="inherit" size="small" variant="outlined" onClick={handleOpen}
+                sx={{display: 'inline-block', width: 300, overflow: 'hidden', whiteSpace: 'nowrap'}}
+            >
+                <Typography variant="h6" component="div" sx={{ flexGrow: 1, textTransform: 'none' }}>
                     Your Name: {name}
                 </Typography>
             </Button>
@@ -41,11 +46,14 @@ export default function NameSelectDialog({ name, onSave }: NameSelectDialogProps
                         fullWidth
                         variant="standard"
                         defaultValue={name}
+                        onChange={(event) => {
+                            setTempName(event.target.value);
+                        }}
                     />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={() => handleSave(name)}>Save</Button>
+                    <Button type='submit' onClick={() => handleSave(name)}>Save</Button>
                 </DialogActions>
             </Dialog>
         </div>
