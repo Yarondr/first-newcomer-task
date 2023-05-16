@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
-import SubMission from './SubMission';
 import { forwardRef } from "react";
+import styles from '../styles/Mission.module.css';
+import SubMission from './SubMission';
 
 export interface MissionProps {
     id: number;
@@ -18,6 +19,7 @@ const Mission = forwardRef<unknown, MissionProps>(({ id, title, subMissions, onC
 
     return (
         <Box
+            className={styles.mission}
             ref={ref}
             sx={{
                 flexGrow: 1,
@@ -29,7 +31,6 @@ const Mission = forwardRef<unknown, MissionProps>(({ id, title, subMissions, onC
                 color: '#ffffff',
             }}
         >
-
             <Typography variant="h4" component="div" sx={{ flexGrow: 1}}>
                 M{id < 10 ? `0${id}` : id}: {title}
             </Typography>

@@ -1,0 +1,16 @@
+.mission {
+    animation: not-answered 2s infinite;
+    animation-play-state: paused;
+}
+
+@keyframes not-answered {
+    0% {
+        background-color: 'primary.main';
+    }
+    50% {
+        background-color: #ff0000;
+    }
+    100% {
+        background-color: 'primary.main';
+    }
+}

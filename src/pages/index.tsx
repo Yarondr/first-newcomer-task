@@ -1,9 +1,10 @@
 import Mission from "@/components/Mission";
 import NameSelectDialog from "@/components/NameSelectDialog";
 import { missionsData } from "@/utils/MissionsData";
-import { AppBar, Autocomplete, Box, Button, TextField, Toolbar } from "@mui/material";
+import { AppBar, Autocomplete, Box, Button, Fade, Slide, TextField, Toolbar } from "@mui/material";
 import Image from "next/image";
 import { createRef, useState } from "react";
+import '../styles/Home.module.css';
 
 export default function Home() {
     const [name, setName] = useState('');
@@ -18,6 +19,12 @@ export default function Home() {
 
             if (missionValues.length === 0 || missionValues.includes('')) {
                 missionRef.scrollIntoView({ behavior: 'smooth', block: 'end'});
+                setTimeout(() => {
+                    missionRef.style.animationPlayState = 'running';
+                    setTimeout(() => {
+                        missionRef.style.animationPlayState = '';
+                    }, 2000);
+                }, 700);
                 return;
             }
         }
@@ -47,7 +54,7 @@ export default function Home() {
                 />
             )
         }
-        return missionComponents;
+        return <div>{missionComponents}</div>;
     }
     
 
@@ -73,20 +80,28 @@ export default function Home() {
                 </AppBar>
             </Box>
 
+            <Slide direction="up" in={true} timeout={1000}>
+                <div>
+                    <Fade in={true} timeout={1000}>
+                        <div>
+                            {missionComponents}
+                            <Box sx={{textAlign: 'center'}}>
+                                <Button variant="contained" color="primary" onClick={handleSubmit}
+                                    sx={{
+                                        margin: '50px 0px 40px 0px',
+                                        width: '800px',
+                                        height: '100px',
+                                    }}
+                                    style={{ fontSize: '40px'}}>
+                                    Submit
+                                </Button>
+                            </Box>
+                        </div>
+                    </Fade>
+                </div>
+            </Slide>
 
-            {missionComponents}
-
-            <Box sx={{textAlign: 'center'}}>
-                <Button variant="contained" color="primary" onClick={handleSubmit}
-                    sx={{
-                        margin: '50px 0px 40px 0px',
-                        width: '800px',
-                        height: '100px',
-                    }}
-                    style={{ fontSize: '40px'}}>
-                    Submit
-                </Button>
-            </Box>
+            
         </div>
     )
 }
