@@ -6,8 +6,10 @@ import { AppBar, Autocomplete, Box, Button, Fade, Slide, TextField, Toolbar, Typ
 import Image from "next/image";
 import { createRef, useState } from "react";
 import '../styles/Home.module.css';
+import { useRouter } from "next/router";
 
 export default function Home() {
+    const { push } = useRouter();
     const [name, setName] = useState('');
     const [team, setTeam] = useState('');
     const missions: { [missionId: number]: { values: string[], ref: React.RefObject<HTMLDivElement> } } = {};
@@ -23,6 +25,7 @@ export default function Home() {
             const missionRef = missions[mission].ref.current;
             if (!missionRef) return;
 
+            // if not all values are filled, scroll and blink the mission
             if (missionValues.length === 0 || missionValues.includes('')) {
                 missionRef.scrollIntoView({ behavior: 'smooth', block: 'end'});
                 setTimeout(() => {
@@ -38,15 +41,23 @@ export default function Home() {
             values[mission] = convertMissionPoints(missionValues, Number(mission));
         }
 
-
+        // get score
         const params = new URLSearchParams({
             missions: JSON.stringify(values),
         });
         fetch(`/api/points?${params.toString()}`).then(async (res) => {
-            console.log(await res.text());
-        });
+            const score = await res.text();
 
-        console.log(values);
+            // navigate to score page
+            push({
+                pathname: '/score',
+                query: {
+                    score: score,
+                    teamNumber: team,
+                    refereeName: name,
+                },
+            });
+        });
     }
 
     function handleChange(missionIndex: number, values: string[]) {
