@@ -108,7 +108,9 @@ export default function Home() {
                             />
                             <Box sx={{ textAlign: 'center', display: 'flex', alignItems: 'center'}}>
                                 <Image src="/first-logo.png" alt="first-logo" width="200" height="50" style={{ marginLeft: 'auto'}} />
-                                <Image src="/cargo-connect.png" alt="cargo-connect-logo" width="100" height="50" style={{ marginRight: 'auto'}} />
+                                <Typography variant="h4" component="div" sx={{ fontWeight: '900', marginLeft: '30px', fontFamily: 'Nunito'}}>
+                                    CARGO CONNECT
+                                </Typography>
                             </Box>
                             
                             <Box>
@@ -136,7 +138,7 @@ export default function Home() {
                         <div>
                             {missionComponents}
                             <Box sx={{textAlign: 'center'}}>
-                                <Button variant="contained" color="primary" onClick={handleSubmit}
+                                <Button variant="contained" color="secondary" onClick={handleSubmit}
                                     sx={{
                                         width: '800px',
                                         height: '100px',

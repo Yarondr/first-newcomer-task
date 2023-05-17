@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Box, ToggleButtonGroup, Typography } from "@mui/material";
 import { ToggleButton } from './ToogleButton';
-import { BorderRight } from '@mui/icons-material';
+import { theme } from './layout';
 
 
 interface SubMissionProps {
@@ -32,7 +32,7 @@ export default function SubMission({ description, options, onChange }: SubMissio
             }}
         >
 
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1, marginTop: '5px'}}>
+            <Typography color='white' variant="h6" component="div" sx={{ flexGrow: 1, marginTop: '5px'}}>
                 {description}
             </Typography>
             <ToggleButtonGroup
@@ -55,8 +55,8 @@ export default function SubMission({ description, options, onChange }: SubMissio
                             paddingRight: '15px',
                         }}
                         unselected-text-color='black'
-                        unselected-background-color='white'
-                        selected-background-color='#9FE2BF'
+                        unselected-background-color={theme.button.primary}
+                        selected-background-color={theme.button.selected}
                         selected-text-color='black'
                         value={option}>{option}
                     </ToggleButton>
