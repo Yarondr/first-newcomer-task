@@ -4,9 +4,9 @@ import { missionsData } from "@/utils/missions/MissionsData";
 import { convertMissionPoints } from "@/utils/missions/PointsConvertor";
 import { AppBar, Autocomplete, Box, Button, Fade, Slide, TextField, Toolbar, Typography } from "@mui/material";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { createRef, useState } from "react";
 import '../styles/Home.module.css';
-import { useRouter } from "next/router";
 
 export default function Home() {
     const { push } = useRouter();
@@ -96,21 +96,24 @@ export default function Home() {
         <div style={{ margin: '0px auto 0px auto', width: '95%'}}>
             <Box sx={{ flexGrow: 1}}>
                 <AppBar position="static" sx={{borderRadius: '10px', backgroundColor: 'primary.main', marginTop: '15px'}}>
-                    <Toolbar>
-                        <Autocomplete
-                            value={team}
-                            size="small"
-                            id="team-select"
-                            sx={{ width: 300 }}
-                            onChange={(event, newValue) => {setTeam(newValue || '');}}
-                            renderInput={(params) => <TextField {...params} label="Select Team" />}
-                            options={Array.from(Array(1000).keys()).map((i) => (`Team #${i + 1}`))}
-                        />
-                        <Image src="/first-logo.png" alt="first-logo" width="200" height="50" style={{ marginLeft: 'auto'}} />
-                        <Image src="/cargo-connect.png" alt="cargo-connect-logo" width="100" height="50" />
-                        <Box sx={{ marginLeft: 'auto'}}>
-                            <NameSelectDialog onSave={(name) => {setName(name)}} />
-                        </Box>
+                    <Toolbar sx={{ display: 'flex', justifyContent: 'space-between'}}>
+                            <Autocomplete
+                                value={team}
+                                size="small"
+                                id="team-select"
+                                sx={{ width: 300, textAlign: "right"}}
+                                onChange={(event, newValue) => {setTeam(newValue || '');}}
+                                renderInput={(params) => <TextField {...params} label="Select Team" />}
+                                options={Array.from(Array(1000).keys()).map((i) => (`Team #${i + 1}`))}
+                            />
+                            <Box sx={{ textAlign: 'center', display: 'flex', alignItems: 'center'}}>
+                                <Image src="/first-logo.png" alt="first-logo" width="200" height="50" style={{ marginLeft: 'auto'}} />
+                                <Image src="/cargo-connect.png" alt="cargo-connect-logo" width="100" height="50" style={{ marginRight: 'auto'}} />
+                            </Box>
+                            
+                            <Box>
+                                <NameSelectDialog onSave={(name) => {setName(name)}} />
+                            </Box>
                     </Toolbar>
                 </AppBar>
             </Box>

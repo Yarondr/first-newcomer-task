@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, Typography } from "@mui/material";
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, Typography } from "@mui/material";
 
 export interface NameSelectDialogProps {
     onSave: (name: string) => void;
@@ -25,7 +25,7 @@ export default function NameSelectDialog({ onSave }: NameSelectDialogProps) {
     }
 
     return (
-        <div>
+        <Box>
             <Button
                 color="inherit" size="small" variant="outlined" onClick={handleOpen}
                 sx={{display: 'inline-block', width: 300, overflow: 'hidden', whiteSpace: 'nowrap'}}
@@ -57,6 +57,6 @@ export default function NameSelectDialog({ onSave }: NameSelectDialogProps) {
                     <Button color='secondary' type='submit' onClick={() => handleSave(name)}>Save</Button>
                 </DialogActions>
             </Dialog>
-        </div>
+        </Box>
     )
 }
