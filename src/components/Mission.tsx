@@ -17,6 +17,8 @@ export interface SubMissionData {
 
 const Mission = forwardRef<unknown, MissionProps>(({ id, title, subMissions, onChange }: MissionProps, ref) => {
     const [values, setValues] = useState<string[]>(Array.from({ length: subMissions.length }, () => ''));
+    
+    Mission.displayName = 'Mission';
 
     return (
         <Box

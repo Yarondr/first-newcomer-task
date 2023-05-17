@@ -11,7 +11,7 @@ export default function Score() {
         if (!score || !teamNumber || !refereeName) {
             router.push('/');
         }
-    }, [score, teamNumber, refereeName]);
+    }, [score, teamNumber, refereeName, router]);
 
     return (
         <Box
