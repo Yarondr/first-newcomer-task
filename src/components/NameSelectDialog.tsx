@@ -2,10 +2,11 @@ import * as React from 'react';
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, Typography } from "@mui/material";
 
 export interface NameSelectDialogProps {
+    originalName: string;
     onSave: (name: string) => void;
 }
 
-export default function NameSelectDialog({ onSave }: NameSelectDialogProps) {
+export default function NameSelectDialog({ originalName, onSave }: NameSelectDialogProps) {
     const [open, setOpen] = React.useState(false);
     const [name, setName] = React.useState('');
     const [tempName, setTempName] = React.useState('');
@@ -31,7 +32,7 @@ export default function NameSelectDialog({ onSave }: NameSelectDialogProps) {
                 sx={{display: 'inline-block', width: 300, overflow: 'hidden', whiteSpace: 'nowrap'}}
             >
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1, textTransform: 'none' }}>
-                    Your Name: {name}
+                    Your Name: {name || originalName || ''}
                 </Typography>
             </Button>
             <Dialog open={open} onClose={handleClose}>
@@ -46,7 +47,7 @@ export default function NameSelectDialog({ onSave }: NameSelectDialogProps) {
                         type="text"
                         fullWidth
                         variant="standard"
-                        defaultValue={name}
+                        defaultValue={originalName}
                         onChange={(event) => {
                             setTempName(event.target.value);
                         }}

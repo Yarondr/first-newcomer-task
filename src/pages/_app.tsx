@@ -1,9 +1,7 @@
-import Image from 'next/image'
-import { AppProps } from 'next/app'
-import styles from '../styles/page.module.css'
-import '../styles/globals.css'
-import RootLayout from '@/components/layout'
 import Head from 'next/head'
+import { AppProps } from 'next/app'
+import RootLayout from '@/components/layout'
+import '../styles/globals.css'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (

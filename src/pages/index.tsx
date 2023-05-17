@@ -5,7 +5,7 @@ import { convertMissionPoints } from "@/utils/missions/PointsConvertor";
 import { AppBar, Autocomplete, Box, Button, Fade, Slide, TextField, Toolbar, Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { createRef, useState } from "react";
+import { createRef, useEffect, useState } from "react";
 import '../styles/Home.module.css';
 
 export default function Home() {
@@ -14,6 +14,14 @@ export default function Home() {
     const [team, setTeam] = useState('');
     const missions: { [missionId: number]: { values: string[], ref: React.RefObject<HTMLDivElement> } } = {};
     const missionComponents = buildMissionComponents();
+
+    useEffect(() => {
+        if (name == '') {
+            setName(localStorage.getItem('name') || '');
+        } else {
+            localStorage.setItem('name', name);
+        }
+    }, [name]);
 
     function handleSubmit() {
         const values: {[missionId: number]: string[]} = {};
@@ -114,7 +122,7 @@ export default function Home() {
                             </Box>
                             
                             <Box>
-                                <NameSelectDialog onSave={(name) => {setName(name)}} />
+                                <NameSelectDialog originalName={name} onSave={(name) => {setName(name)}} />
                             </Box>
                     </Toolbar>
                 </AppBar>

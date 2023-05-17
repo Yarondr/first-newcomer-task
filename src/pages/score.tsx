@@ -1,4 +1,5 @@
-import { Box, Typography } from "@mui/material";
+import { ArrowBack } from "@mui/icons-material";
+import { Box, Fab, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
@@ -24,15 +25,25 @@ export default function Score() {
         >
             <Box sx={{ flexGrow: 1, textAlign: 'center'}}>
                 <Typography variant="h4" component="div" fontSize={40}>
-                    Team Number: #{teamNumber}
+                    {teamNumber}
                 </Typography>
                 <Typography variant="h4" component="div" fontSize={80}>
                     Score: {score}
                 </Typography>
-                <Typography variant="h4" component="div" fontSize={40} sx={{ marginTop: '40px'}}>
+                <Typography variant="h4" component="div" fontSize={40} sx={{ marginTop: '20px'}}>
                     Referee: {refereeName}
                 </Typography>
             </Box>
+
+            <Fab color="success" size="large" aria-label="back" onClick={() => router.push('/')}
+            sx={{
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                marginTop: '60px',
+                display: 'flex',
+            }}>
+                <ArrowBack />
+            </Fab>
         </Box>
     )
 }
