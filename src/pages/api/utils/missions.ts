@@ -17,15 +17,15 @@ function calcMissionZero(complete: boolean) {
 }
 
 /**
- * if the truck is fully closed and partly full, return 20 (status == 0).
- * if the truck is fully closed and full, return 30 (status == 1).
+ * if the truck is fully closed and full, return 30 (status == 0).
+ * if the truck is fully closed and partly full, return 20 (status == 1).
  * otherwise, return 0 (status == 2).
  * @param status the status of the truck
  * @returns points
  * @example 1 -> 30 points
  */
 function calcMissionTwo(status: number) {
-    return status == 0 ? 20 : status == 1 ? 30 : 0;
+    return status == 0 ? 30 : status == 1 ? 20 : 0;
 }
 
 /**
