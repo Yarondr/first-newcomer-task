@@ -1,19 +1,18 @@
-import Mission from "@/components/Mission";
 import NameSelectDialog from "@/components/NameSelectDialog";
-import { missionsData } from "@/utils/missions/MissionsData";
-import { convertMissionPoints } from "@/utils/missions/PointsConvertor";
+import { isAllMissionValuesFilled } from "@/utils/missions/DataValidator";
+import { MissionsObject, buildMissionComponents } from "@/utils/missions/MissionsData";
+import { convertMissionPoints, getScore } from "@/utils/missions/PointsConvertor";
 import { AppBar, Autocomplete, Box, Button, Fade, Slide, TextField, Toolbar, Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { createRef, useEffect, useState } from "react";
-import '../styles/Home.module.css';
+import { useEffect, useState } from "react";
 
 export default function Home() {
     const { push } = useRouter();
     const [name, setName] = useState('');
     const [team, setTeam] = useState('');
-    const missions: { [missionId: number]: { values: string[], ref: React.RefObject<HTMLDivElement> } } = {};
-    const missionComponents = buildMissionComponents();
+    const missions: MissionsObject = {};
+    const missionComponents = buildMissionComponents(missions);
 
     useEffect(() => {
         if (name == '') {
@@ -23,76 +22,25 @@ export default function Home() {
         }
     }, [name]);
 
-    function handleSubmit() {
+    async function handleSubmit() {
         const values: {[missionId: number]: string[]} = {};
 
         for (const mission in missions) {
             const missionValues = missions[mission].values;
-
-            // check that all values are filled
-            const missionRef = missions[mission].ref.current;
-            if (!missionRef) return;
-
-            // if not all values are filled, scroll and blink the mission
-            if (missionValues.length === 0 || missionValues.includes('')) {
-                missionRef.scrollIntoView({ behavior: 'smooth', block: 'end'});
-                setTimeout(() => {
-                    missionRef.style.animationPlayState = 'running';
-                    setTimeout(() => {
-                        missionRef.style.animationPlayState = '';
-                    }, 2000);
-                }, 700);
-                return;
-            }
-
-            // add values to values object
+            
+            if (isAllMissionValuesFilled(missionValues, missions[mission].ref.current)) return;
             values[mission] = convertMissionPoints(missionValues, Number(mission));
         }
 
-        // get score
-        const params = new URLSearchParams({
-            missions: JSON.stringify(values),
+        const score = await getScore(values);
+        push({
+            pathname: '/score',
+            query: {
+                score: score,
+                teamNumber: team,
+                refereeName: name,
+            },
         });
-        fetch(`/api/points?${params.toString()}`).then(async (res) => {
-            const score = await res.text();
-
-            // navigate to score page
-            push({
-                pathname: '/score',
-                query: {
-                    score: score,
-                    teamNumber: team,
-                    refereeName: name,
-                },
-            });
-        });
-    }
-
-    function handleChange(missionIndex: number, values: string[]) {
-        missions[missionIndex]['values'] = values;
-    }
-
-    function buildMissionComponents() {
-        const missionComponents = [];
-        for (const missionIndex in missionsData) {
-            const mission = missionsData[missionIndex];
-            const ref = createRef<HTMLDivElement>();
-
-            missions[mission.id] = {
-                values: [],
-                ref: ref,
-            }
-
-            missionComponents.push(
-                <Mission
-                    ref={ref}
-                    key={mission.id} id={mission.id} title={mission.title}
-                    subMissions={mission.subMissions}
-                    onChange={handleChange}
-                />
-            )
-        }
-        return <div>{missionComponents}</div>;
     }
 
     function isTeamAndNameFilled() {
@@ -146,7 +94,7 @@ export default function Home() {
                         <div>
                             {missionComponents}
                             <Box sx={{textAlign: 'center'}}>
-                                <Button variant="contained" color="secondary" onClick={handleSubmit}
+                                <Button variant="contained" color="secondary" onClick={async () => await handleSubmit()}
                                     sx={{
                                         width: '800px',
                                         height: '100px',

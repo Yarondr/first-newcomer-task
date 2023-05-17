@@ -1,6 +1,5 @@
-import MuiToggleButton, { ToggleButtonProps} from "@mui/material/ToggleButton";
+import MuiToggleButton, { ToggleButtonProps } from "@mui/material/ToggleButton";
 import { styled } from "@mui/material/styles";
-import PropTypes from 'prop-types';
 
 interface CustomToggleButtonProps extends ToggleButtonProps {
     'selected-background-color': string;
@@ -11,9 +10,9 @@ interface CustomToggleButtonProps extends ToggleButtonProps {
 
 export const ToggleButton = styled(MuiToggleButton)<CustomToggleButtonProps>((
     { 'selected-background-color': selectedBackgroundColor,
-        'selected-text-color': selectedTextColor,
-        'unselected-background-color': unselectedBackgroundColor,
-        'unselected-text-color': unselectedTextColor
+      'selected-text-color': selectedTextColor,
+      'unselected-background-color': unselectedBackgroundColor,
+      'unselected-text-color': unselectedTextColor
     }: CustomToggleButtonProps) => ({
     "&.Mui-selected, &.Mui-selected:hover": {
         color: selectedTextColor,

@@ -11,6 +11,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <meta name="description" content="FLL Scoring System - Cargo Connect" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      
       <Component {...pageProps} />
     </RootLayout>
   )

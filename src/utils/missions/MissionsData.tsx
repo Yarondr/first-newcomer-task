@@ -1,9 +1,38 @@
-import { SubMissionData } from "@/components/Mission";
+import Mission, { SubMissionData } from "@/components/Mission";
+import { createRef } from "react";
 
 interface MissionData {
     id: number;
     title: string;
     subMissions: SubMissionData[];
+}
+
+export type MissionsObject = { [missionId: number]: { values: string[], ref: React.RefObject<HTMLDivElement> } };
+
+
+export function buildMissionComponents(missions: MissionsObject) {
+    const missionComponents = [];
+    for (const missionIndex in missionsData) {
+        const mission = missionsData[missionIndex];
+        const ref = createRef<HTMLDivElement>();
+
+        missions[mission.id] = {
+            values: [],
+            ref: ref,
+        }
+
+        missionComponents.push(
+            <Mission
+                ref={ref}
+                key={mission.id} id={mission.id} title={mission.title}
+                subMissions={mission.subMissions}
+                onChange={(missionIndex: number, values: string[]) => {
+                    missions[missionIndex]['values'] = values;
+                }}
+            />
+        )
+    }
+    return <div>{missionComponents}</div>;
 }
 
 

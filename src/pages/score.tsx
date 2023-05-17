@@ -35,13 +35,11 @@ export default function Score() {
                 </Typography>
             </Box>
 
-            <Fab color="success" size="large" aria-label="back" onClick={() => router.push('/')}
-            sx={{
-                marginLeft: 'auto',
-                marginRight: 'auto',
-                marginTop: '60px',
-                display: 'flex',
-            }}>
+            <Fab
+                sx={{ marginLeft: 'auto', marginRight: 'auto', marginTop: '60px', display: 'flex',}}
+                color="success" size="large" aria-label="back"
+                onClick={() => router.push('/')}
+            >
                 <ArrowBack />
             </Fab>
         </Box>
