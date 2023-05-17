@@ -38,6 +38,7 @@ export default function NameSelectDialog({ onSave }: NameSelectDialogProps) {
                 <DialogTitle>Enter your name:</DialogTitle>
                 <DialogContent>
                     <TextField
+                        color='secondary'
                         autoFocus
                         margin="dense"
                         id="name"
@@ -52,8 +53,8 @@ export default function NameSelectDialog({ onSave }: NameSelectDialogProps) {
                     />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>Cancel</Button>
-                    <Button type='submit' onClick={() => handleSave(name)}>Save</Button>
+                    <Button color='secondary' onClick={handleClose}>Cancel</Button>
+                    <Button color='secondary' type='submit' onClick={() => handleSave(name)}>Save</Button>
                 </DialogActions>
             </Dialog>
         </div>
