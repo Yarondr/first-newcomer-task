@@ -32,7 +32,7 @@ const Mission = forwardRef<unknown, MissionProps>(({ id, title, subMissions, onC
             sx={{
                 flexGrow: 1,
                 direction: 'rtl',
-                margin: '40px 60px 0px 60px',
+                margin: '40px 0px 0px 0px',
                 backgroundColor: 'primary.main',
                 borderRadius: '10px',
                 padding: '10px 20px 20px 20px',

@@ -50,7 +50,8 @@ export default function SubMission({ description, options, onChange }: SubMissio
               margin: '0px 10px 0px 10px',
               borderRadius: '10px',
               paddingLeft: '15px',
-              paddingRight: '15px'
+              paddingRight: '15px',
+              fontSize: '16px',
             }}
             unselected-text-color="black"
             unselected-background-color={theme.button.primary}

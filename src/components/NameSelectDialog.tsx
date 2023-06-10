@@ -29,7 +29,7 @@ export default function NameSelectDialog({ originalName, onSave }: NameSelectDia
         <Box>
             <Button
                 color="inherit" size="small" variant="outlined" onClick={handleOpen}
-                sx={{display: 'inline-block', width: 300, overflow: 'hidden', whiteSpace: 'nowrap'}}
+                sx={{display: 'inline-block', width: "auto", overflow: 'hidden', whiteSpace: 'nowrap'}}
             >
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1, textTransform: 'none' }}>
                     Your Name: {name || originalName || ''}

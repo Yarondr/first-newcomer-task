@@ -6,12 +6,36 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
+function useWindowSize() {
+    const [windowSize, setWindowSize] = useState({
+        width: undefined || 0,
+        height: undefined || 0,
+    });
+
+    useEffect(() => {
+        function handleResize() {
+            setWindowSize({
+                width: window.innerWidth,
+                height: window.innerHeight,
+            });
+        }
+
+        window.addEventListener("resize", handleResize);
+
+        handleResize();
+
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+    return windowSize;
+}
+
 export default function Home() {
     const { push } = useRouter();
     const [name, setName] = useState('');
     const [team, setTeam] = useState('');
     const missions: MissionsObject = {};
     const missionComponents = buildMissionComponents(missions);
+    const windowSize = useWindowSize();
 
     useEffect(() => {
         if (name == '') {
@@ -53,23 +77,26 @@ export default function Home() {
     return (
         <div style={{ margin: '0px auto 0px auto', width: '95%'}}>
             <Box sx={{ flexGrow: 1}}>
-                <AppBar position="static" sx={{borderRadius: '10px', backgroundColor: 'primary.main', marginTop: '15px'}}>
+                <AppBar position="fixed" sx={{borderRadius: '10px', backgroundColor: 'primary.main'}}>
                     <Toolbar sx={{ display: 'flex', justifyContent: 'space-between'}}>
                             <Autocomplete
                                 value={team}
                                 size="small"
                                 id="team-select"
-                                sx={{ width: 300, textAlign: "right"}}
+                                sx={{ width: "auto", textAlign: "right"}}
                                 onChange={(event, newValue) => {setTeam(newValue || '');}}
                                 renderInput={(params) => <TextField {...params} label="Select Team" />}
                                 options={Array.from(Array(1000).keys()).map((i) => (`Team #${i + 1}`))}
                             />
-                            <Box sx={{ textAlign: 'center', display: 'flex', alignItems: 'center'}}>
-                                <Image src="/first-logo.png" alt="first-logo" width="200" height="50" style={{ marginLeft: 'auto'}} />
-                                <Typography variant="h4" component="div" sx={{ fontWeight: '900', marginLeft: '30px', fontFamily: 'Nunito'}}>
-                                    CARGO CONNECT
-                                </Typography>
-                            </Box>
+                            {windowSize.width > 700 ?
+                                <Box sx={{ textAlign: 'center', display: 'flex', alignItems: 'center'}}>
+                                    <Image src="/first-logo.png" alt="first-logo" width="200" height="50" style={{ marginLeft: 'auto'}} />
+                                    <Typography variant="h4" component="div" sx={{ fontWeight: '900', marginLeft: '30px', fontFamily: 'Nunito'}}>
+                                        CARGO CONNECT
+                                    </Typography>
+                                </Box> :
+                                <></>
+                            }
                             
                             <Box>
                                 <NameSelectDialog originalName={name} onSave={(name) => {setName(name)}} />
@@ -78,19 +105,21 @@ export default function Home() {
                 </AppBar>
             </Box>
 
+            <Box sx={{height: 50}}/>
+
             <Slide style={{ display: isTeamAndNameFilled() ? 'none' : 'block' }} direction="down" in={!isTeamAndNameFilled()} timeout={1000}>
                 <div>
                     <Fade in={!isTeamAndNameFilled()} timeout={1000}>
                         <Box sx={{textAlign: 'center'}}>
                             <Typography variant="h4" component="div" sx={{ flexGrow: 1, marginTop: '50px'}}>
-                                Please fill in a team number and your name
+                                אנא מלאו את מספר הקבוצה ואת שמכם
                             </Typography>
                         </Box>
                     </Fade>
                 </div>
             </Slide>
 
-            <Slide style={{ display: isTeamAndNameFilled() ? 'block' : 'none' }} direction="up" in={isTeamAndNameFilled()} timeout={1000}>
+            <Slide style={{ display: isTeamAndNameFilled() ? 'flex' : 'none', justifyContent: 'center'}} direction="up" in={isTeamAndNameFilled()} timeout={1000}>
                 <div>
                     <Fade in={isTeamAndNameFilled()} timeout={1000}>
                         <div>
@@ -98,7 +127,7 @@ export default function Home() {
                             <Box sx={{textAlign: 'center'}}>
                                 <Button variant="contained" color="secondary" onClick={async () => await handleSubmit()}
                                     sx={{
-                                        width: '800px',
+                                        width: 'auto',
                                         height: '100px',
                                         margin: '50px 0px 40px 0px',
                                     }}
