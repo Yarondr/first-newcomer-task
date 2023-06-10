@@ -12,7 +12,12 @@ export interface MissionProps {
 
 export interface SubMissionData {
     description: string;
-    options: string[];
+    options: MissionOption[];
+}
+
+export interface MissionOption {
+    description: string;
+    points: number;
 }
 
 const Mission = forwardRef<unknown, MissionProps>(({ id, title, subMissions, onChange }: MissionProps, ref) => {
