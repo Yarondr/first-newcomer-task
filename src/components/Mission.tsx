@@ -7,7 +7,7 @@ export interface MissionProps {
     id: number;
     title: string;
     subMissions: SubMissionData[];
-    onChange: (id: number, values: string[]) => void;
+    onChange: (id: number, values: MissionOption[]) => void;
 }
 
 export interface SubMissionData {
@@ -21,7 +21,7 @@ export interface MissionOption {
 }
 
 const Mission = forwardRef<unknown, MissionProps>(({ id, title, subMissions, onChange }: MissionProps, ref) => {
-    const [values, setValues] = useState<string[]>(Array.from({ length: subMissions.length }, () => ''));
+    const [values, setValues] = useState<MissionOption[]>(Array.from({ length: subMissions.length }, () => ({ description: '', points: 0 })));
     
     Mission.displayName = 'Mission';
 
@@ -44,7 +44,7 @@ const Mission = forwardRef<unknown, MissionProps>(({ id, title, subMissions, onC
             </Typography>
             {subMissions.map((subMission, index) => (
                 <SubMission key={index} description={subMission.description} options={subMission.options} onChange={
-                    (selectedValue: string) => {
+                    (selectedValue: MissionOption) => {
                         const newValues = [...values];
                         newValues[index] = selectedValue;
                         setValues(newValues);      

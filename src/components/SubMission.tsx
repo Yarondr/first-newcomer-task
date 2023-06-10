@@ -7,16 +7,16 @@ import { MissionOption } from './Mission';
 interface SubMissionProps {
   description: string;
   options: MissionOption[];
-  onChange: (selectedValue: string) => void;
+  onChange: (selectedValue: MissionOption) => void;
 }
 
 export default function SubMission({ description, options, onChange }: SubMissionProps) {
-  const [value, setValue] = React.useState('');
+  const [value, setValue]= React.useState('');
 
   const handleChange = (event: React.MouseEvent<HTMLElement>, newValue: string) => {
     if (newValue === null) return;
     setValue(newValue);
-    onChange(newValue);
+    onChange(options.find(option => option.description === newValue)!);
   };
 
   return (
@@ -56,7 +56,7 @@ export default function SubMission({ description, options, onChange }: SubMissio
             unselected-background-color={theme.button.primary}
             selected-background-color={theme.button.selected}
             selected-text-color="black"
-            value={option}
+            value={option.description}
           >
             {option.description}
           </ToggleButton>

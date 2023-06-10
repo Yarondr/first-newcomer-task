@@ -1,4 +1,4 @@
-import Mission, { SubMissionData } from "@/components/Mission";
+import Mission, { MissionOption, SubMissionData } from "@/components/Mission";
 import { createRef } from "react";
 
 interface MissionData {
@@ -8,7 +8,7 @@ interface MissionData {
     subMissionsBonus?: number;
 }
 
-export type MissionsObject = { [missionId: number]: { values: string[], ref: React.RefObject<HTMLDivElement> } };
+export type MissionsObject = { [missionId: number]: { values: MissionOption[], ref: React.RefObject<HTMLDivElement> } };
 
 
 export function buildMissionComponents(missions: MissionsObject) {
@@ -27,7 +27,7 @@ export function buildMissionComponents(missions: MissionsObject) {
                 ref={ref}
                 key={mission.id} id={mission.id} title={mission.title}
                 subMissions={mission.subMissions}
-                onChange={(missionIndex: number, values: string[]) => {
+                onChange={(missionIndex: number, values: MissionOption[]) => {
                     missions[missionIndex]['values'] = values;
                 }}
             />

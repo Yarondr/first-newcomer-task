@@ -1,7 +1,6 @@
 import NameSelectDialog from "@/components/NameSelectDialog";
 import { isAllMissionValuesFilled } from "@/utils/missions/DataValidator";
 import { MissionsObject, buildMissionComponents } from "@/utils/missions/MissionsData";
-import { convertMissionPoints, getScore } from "@/utils/missions/PointsConvertor";
 import { AppBar, Autocomplete, Box, Button, Fade, Slide, TextField, Toolbar, Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -23,16 +22,19 @@ export default function Home() {
     }, [name]);
 
     async function handleSubmit() {
-        const values: {[missionId: number]: string[]} = {};
+        let score = 0;
 
         for (const mission in missions) {
-            const missionValues = missions[mission].values;
+            console.log(missions[mission])
+            const missionValues = missions[mission].values.map((value) => value.description);
             
             if (isAllMissionValuesFilled(missionValues, missions[mission].ref.current)) return;
-            values[mission] = convertMissionPoints(missionValues, Number(mission));
+
+            for (const subMission in missions[mission].values) {
+                score += missions[mission].values[subMission].points;
+            }
         }
 
-        const score = await getScore(values);
         push({
             pathname: '/score',
             query: {

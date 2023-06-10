@@ -1,4 +1,3 @@
-
 export function isAllMissionValuesFilled(missionValues: string[], missionRef: HTMLDivElement | null) {
     if (!missionRef) return true;
 
