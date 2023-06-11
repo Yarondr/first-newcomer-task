@@ -75,9 +75,9 @@ export const missionsData = [
             {
                 description: "האם המכולה עם הצירים סגורה לגמרי?",
                 options: [
-                    { description: "לא סגורה / ריקה", points: 0 },
+                    { description: "כל 6 חלקי התכולה", points: 30 },
                     { description: "1-5 חלקי תכולה", points: 20 },
-                    { description: "כל 6 חלקי התכולה", points: 30 }
+                    { description: "לא סגורה / ריקה", points: 0 }
                 ]
             }
         ]
@@ -143,9 +143,9 @@ export const missionsData = [
             {
                 description: "אם הרובוט שלכם חנה מעל הקו הכחול של הימנעות מתאונות בסוף המקצה והמשטח הצהוב:",
                 options: [
-                    { description: "לא חנה", points: 0},
+                    { description: "הופל למטה", points: 30 },
                     { description: "לא הופל למטה", points: 20 },
-                    { description: "הופל למטה", points: 30 }
+                    { description: "לא חנה", points: 0}
                 ]
             }
         ]
@@ -237,9 +237,9 @@ export const missionsData = [
             {
                 description: "אם החבילה נמסרה ליעדה כך שהיא על מפתן הדלת",
                 options: [
-                    { description: "לא נמסרה ליעדה", points: 0 },
+                    { description: "לגמרי על", points: 30 },
                     { description: "חלקית", points: 20 },
-                    { description: "לגמרי על", points: 30 }
+                    { description: "לא נמסרה ליעדה", points: 0 }
                 ]
             }
         ]
@@ -251,17 +251,17 @@ export const missionsData = [
             {
                 description: "אם להב הטורבינה נוגע רק במעמד הכחול ו:",
                 options: [
-                    { description: "לא נוגע במעמד הכחול", points: 0 },
+                    { description: "בשום דבר אחר", points: 30 },
                     { description: "בשטיח", points: 20 },
-                    { description: "בשום דבר אחר", points: 30 }
+                    { description: "לא נוגע במעמד הכחול", points: 0 }
                 ]
             },
             {
                 description: "אם פסל התרנגולת עומד ישר על בסיסו בתוך העיגול",
                 options: [
-                    { description: "לא עומד ישר על בסיסו בתוך העיגול", points: 0 },
+                    { description: "לגמרי בתוך", points: 10 },
                     { description: "חלקית בפנים", points: 5 },
-                    { description: "לגמרי בתוך", points: 10 }
+                    { description: "לא עומד ישר על בסיסו בתוך העיגול", points: 0 }
                 ]
             }
         ]
@@ -294,9 +294,9 @@ export const missionsData = [
             {
                 description: "כמה משטחי הגשר הורדו כך שהם נחים על התומך המרכזי שלהם",
                 options: [
-                    { description: "0", points: 0 },
-                    { description: "1", points: 10 },
                     { description: "2", points: 20 },
+                    { description: "1", points: 10 },
+                    { description: "0", points: 0 },
                 ]
             }
         ]
@@ -308,25 +308,25 @@ export const missionsData = [
             {
                 description: "כמה מכולות יש על ונוגעות רק במשאיות השרשור",
                 options: [
-                    { description: "0", points: 0 },
-                    { description: "1", points: 10 },
                     { description: "2+", points: 20 },
+                    { description: "1", points: 10 },
+                    { description: "0", points: 0 },
                 ]
             },
             {
                 description: "כמה מכולות יש על ונוגעות רק ברכבת",
                 options: [
-                    { description: "0", points: 0 },
-                    { description: "1", points: 20 },
                     { description: "2+", points: 40 },
+                    { description: "1", points: 20 },
+                    { description: "0", points: 0 },
                 ]
             },
             {
                 description: "כמה מכולות יש על ונוגעות רק בסיפון המערבי של ספינת התובלה",
                 options: [
-                    { description: "0", points: 0 },
-                    { description: "1", points: 30 },
                     { description: "2+", points: 60 },
+                    { description: "1", points: 30 },
+                    { description: "0", points: 0 },
                 ]
             }
         ]
@@ -338,25 +338,25 @@ export const missionsData = [
             {
                 description: "כמות מכולות חלקית בתוך עיגול כלשהו",
                 options: [
-                    { description: "0", points: 0 },
-                    { description: "1", points: 5 },
-                    { description: "2", points: 10 },
-                    { description: "3", points: 15 },
-                    { description: "4", points: 20 },
-                    { description: "5", points: 25 },
                     { description: "6", points: 30 },
+                    { description: "5", points: 25 },
+                    { description: "4", points: 20 },
+                    { description: "3", points: 15 },
+                    { description: "2", points: 10 },
+                    { description: "1", points: 5 },
+                    { description: "0", points: 0 },
                 ]
             },
             {
                 description: "כמות מכולות לגמרי בתוך בתוך עיגול כלשהו",
                 options: [
-                    { description: "0", points: 0 },
-                    { description: "1", points: 10 },
-                    { description: "2", points: 20 },
-                    { description: "3", points: 30 },
-                    { description: "4", points: 40 },
-                    { description: "5", points: 50 },
                     { description: "6", points: 60 },
+                    { description: "5", points: 50 },
+                    { description: "4", points: 40 },
+                    { description: "3", points: 30 },
+                    { description: "2", points: 20 },
+                    { description: "1", points: 10 },
+                    { description: "0", points: 0 },
                 ]
             },
             {
@@ -376,13 +376,13 @@ export const missionsData = [
             {
                 description: "כמה עיגולים יש עם מכולה אחת לפחות לגמרי בתוך",
                 options: [
-                    { description: "0", points: 0 },
-                    { description: "1", points: 10 },
-                    { description: "2", points: 20 },
-                    { description: "3", points: 30 },
-                    { description: "4", points: 40 },
-                    { description: "5", points: 50 },
                     { description: "6", points: 60 },
+                    { description: "5", points: 50 },
+                    { description: "4", points: 40 },
+                    { description: "3", points: 30 },
+                    { description: "2", points: 20 },
+                    { description: "1", points: 10 },
+                    { description: "0", points: 0 },
                 ]
             },
         ]
@@ -394,13 +394,13 @@ export const missionsData = [
             {
                 description: "כמה אסימוני דיוק נשארו על הזירה?",
                 options: [
-                    { description: "0", points: 0 },
-                    { description: "1", points: 10 },
-                    { description: "2", points: 15 },
-                    { description: "3", points: 25 },
-                    { description: "4", points: 35 },
-                    { description: "5", points: 50 },
                     { description: "6", points: 50 },
+                    { description: "5", points: 50 },
+                    { description: "4", points: 35 },
+                    { description: "3", points: 25 },
+                    { description: "2", points: 15 },
+                    { description: "1", points: 10 },
+                    { description: "0", points: 0 },
                 ]
             },
         ]

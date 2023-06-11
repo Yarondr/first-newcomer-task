@@ -65,7 +65,7 @@ export default function Home() {
                                 value={team}
                                 size="small"
                                 id="team-select"
-                                sx={{ width: "auto", textAlign: "right"}}
+                                sx={{ width: "180px", textAlign: "right"}}
                                 onChange={(event, newValue) => {setTeam(newValue || '');}}
                                 renderInput={(params) => <TextField {...params} label="Select Team" />}
                                 options={Array.from(Array(1000).keys()).map((i) => (`Team #${i + 1}`))}
@@ -110,7 +110,7 @@ export default function Home() {
                                 <Button variant="contained" color="secondary" onClick={async () => await handleSubmit()}
                                     sx={{
                                         width: 'auto',
-                                        height: '100px',
+                                        height: '80px',
                                         margin: '50px 0px 40px 0px',
                                     }}
                                     style={{ fontSize: '40px' }}
