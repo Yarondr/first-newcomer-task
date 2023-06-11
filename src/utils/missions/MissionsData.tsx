@@ -8,7 +8,7 @@ interface MissionData {
     subMissionsBonus?: number;
 }
 
-export type MissionsObject = { [missionId: number]: { values: MissionOption[], ref: React.RefObject<HTMLDivElement> } };
+export type MissionsObject = { [missionId: number]: { values: MissionOption[], bonus: number, ref: React.RefObject<HTMLDivElement> } };
 
 
 export function buildMissionComponents(missions: MissionsObject) {
@@ -19,6 +19,7 @@ export function buildMissionComponents(missions: MissionsObject) {
 
         missions[mission.id] = {
             values: [],
+            bonus: mission.subMissionsBonus || 0,
             ref: ref,
         }
 

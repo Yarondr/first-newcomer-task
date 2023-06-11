@@ -49,13 +49,17 @@ export default function Home() {
         let score = 0;
 
         for (const mission in missions) {
-            console.log(missions[mission])
             const missionValues = missions[mission].values.map((value) => value.description);
             
             if (isAllMissionValuesFilled(missionValues, missions[mission].ref.current)) return;
 
             for (const subMission in missions[mission].values) {
-                score += missions[mission].values[subMission].points;
+                const values = missions[mission].values[subMission];
+                score += values.points;
+            }
+            
+            if (missions[mission].values.every((value) => value.points != 0)) {
+                score += missions[mission].bonus;
             }
         }
 
