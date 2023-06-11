@@ -68,7 +68,18 @@ export default function Home() {
                                 sx={{ width: "180px", textAlign: "right"}}
                                 onChange={(event, newValue) => {setTeam(newValue || '');}}
                                 renderInput={(params) => <TextField {...params} label="Select Team" />}
-                                options={Array.from(Array(1000).keys()).map((i) => (`Team #${i + 1}`))}
+                                options={[
+                                    "אשכול",
+                                    "סביונים",
+                                    "בן תחומי הדר",
+                                    "אירוס",
+                                    "בן צבי",
+                                    "רעות",
+                                    "שקד",
+                                    "ארגמן",
+                                    "לב המושבה",
+                                    "ניצנים"
+                                ]}
                             />
                             {windowSize.width > 700 ?
                                 <Box sx={{ textAlign: 'center', display: 'flex', alignItems: 'center'}}>
