@@ -1,33 +1,11 @@
 import NameSelectDialog from "@/components/NameSelectDialog";
 import { isAllMissionValuesFilled } from "@/utils/missions/DataValidator";
 import { MissionsObject, buildMissionComponents } from "@/utils/missions/MissionsData";
+import { useWindowSize } from "@/utils/window";
 import { AppBar, Autocomplete, Box, Button, Fade, Slide, TextField, Toolbar, Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-
-function useWindowSize() {
-    const [windowSize, setWindowSize] = useState({
-        width: undefined || 0,
-        height: undefined || 0,
-    });
-
-    useEffect(() => {
-        function handleResize() {
-            setWindowSize({
-                width: window.innerWidth,
-                height: window.innerHeight,
-            });
-        }
-
-        window.addEventListener("resize", handleResize);
-
-        handleResize();
-
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
-    return windowSize;
-}
 
 export default function Home() {
     const { push } = useRouter();
